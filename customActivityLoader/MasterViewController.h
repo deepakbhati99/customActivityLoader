@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @class DetailViewController;
+#import "runningView.h"
 
 @interface MasterViewController : UITableViewController
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
 
-@end
 
+@end
