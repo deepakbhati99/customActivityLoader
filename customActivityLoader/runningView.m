@@ -57,7 +57,14 @@ static const CGFloat timeFreq=0.45;
     {
         self.hidesWhenStopped = YES;
         self.backgroundColor=[[UIColor blackColor] colorWithAlphaComponent:.3];
-        self.ballColor = ballColor;
+        if (ballColor) {
+            self.ballColor = ballColor;
+        }
+        else{
+            self.isRandomColor=YES;
+            self.ballColor=[self getRandomColor];
+        }
+        
         
         self.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
         

@@ -32,7 +32,7 @@
 
     NSString *color=@"color";
     NSString *name=@"name";
-    _colorArray =[@[[UIColor blackColor],[UIColor darkGrayColor],[UIColor lightGrayColor],[UIColor whiteColor],[UIColor grayColor],[UIColor redColor],[UIColor greenColor],[UIColor blueColor],[UIColor cyanColor],[UIColor yellowColor],[UIColor magentaColor],[UIColor orangeColor],[UIColor purpleColor],[UIColor brownColor]] mutableCopy];
+
     _colorArray = [ @[@{
                           color:[UIColor blackColor],
                           name:@"black"
@@ -116,17 +116,8 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     
-    AppDelegate *appDel=(AppDelegate *)[UIApplication sharedApplication].delegate;
-    
-    CGRect frame=self.view.frame;
-    customLoader=[[runningView alloc]initWithFrame:frame];// ballColor:[UIColor blackColor] ballDiameter:10.0];
-    [appDel.window addSubview:customLoader];
-    [customLoader startAnimating];
-    
-    // Delay execution of my block for 10 seconds.
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [customLoader stopAnimating];
-    });
+    [self addLoaderOfColor:nil];
+
     
 }
 -(void)done{
@@ -145,22 +136,26 @@
         controller.navigationItem.leftItemsSupplementBackButton = YES;
     }
 }
-
-#pragma mark - Table View
+#pragma mark- UIRunningActivityLoader
 -(void)addLoaderOfColor:(UIColor *)color{
+    
     AppDelegate *appDel=(AppDelegate *)[UIApplication sharedApplication].delegate;
     
     CGRect frame=self.view.frame;
+    
     customLoader=[[runningView alloc]initWithFrame:frame ballColor:color ballDiameter:10.0];
+    
     [appDel.window addSubview:customLoader];
+    
     [customLoader startAnimating];
     
     // Delay execution of my block for 10 seconds.
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [customLoader stopAnimating];
     });
-
+    
 }
+#pragma mark - Table View
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
