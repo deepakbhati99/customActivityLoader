@@ -33,7 +33,7 @@
 
 static const NSUInteger ballCount = 5;
 static const CGFloat defaultBallDiameter = 10;
-static const CGFloat timeFreq=0.5;
+static const CGFloat timeFreq=0.45;
 
 @implementation runningView
 
@@ -162,22 +162,22 @@ static const CGFloat timeFreq=0.5;
 }
 -(void)startRunningLeftBall{
     
-    [UIView animateWithDuration:timeFreq delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        
-        [self animateView:self.balls.firstObject withReflectionView:self.reflectionBalls.firstObject changeAlphaTo:1];
 
-        
-    }completion:^(BOOL finished){
 
-    }];
-
-    [UIView animateWithDuration:timeFreq delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+    [UIView animateWithDuration:timeFreq/2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         
         [self animateView:self.balls.lastObject withReflectionView:self.reflectionBalls.lastObject changeAlphaTo:0];
         
         
     }completion:^(BOOL finished){
-        
+        [UIView animateWithDuration:timeFreq/2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            
+            [self animateView:self.balls.firstObject withReflectionView:self.reflectionBalls.firstObject changeAlphaTo:1];
+            
+            
+        }completion:^(BOOL finished){
+            
+        }];
     }];
     
     [UIView animateWithDuration:timeFreq delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
