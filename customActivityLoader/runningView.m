@@ -31,7 +31,7 @@
 
 @end
 
-static const NSUInteger ballCount = 3;
+static const NSUInteger ballCount = 5;
 static const CGFloat defaultBallDiameter = 10;
 static const CGFloat timeFreq=0.5;
 
